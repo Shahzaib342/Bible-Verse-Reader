@@ -1,0 +1,11 @@
+.panel {
+    width: 60%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: blueviolet;
+}
+
+.backgrounds div {
+    padding: 15px;
+    border-radius: 15px;
+}
