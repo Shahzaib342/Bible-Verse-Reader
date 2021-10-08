@@ -107,3 +107,9 @@
 .freeplan .activate-btn {
     text-align: center;
 }
+
+.google-auth-btn {
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}
