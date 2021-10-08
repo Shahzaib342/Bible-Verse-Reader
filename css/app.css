@@ -67,3 +67,43 @@
     width: 100%;
     background: yellow;
 }
+
+.top-header {
+    margin: 0 25% 0 25%;
+}
+
+.top-header .main-heading {
+    width: 100%;
+    text-align: center;
+}
+
+.top-header .avatar-img {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.top-header .user-name {
+    margin: auto;
+    margin-top: 20px;
+}
+
+.freeplan h4 {
+    width: 100%;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.freeplan p {
+    width: 100%;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.freeplan .activate-btn {
+    text-align: center;
+}
