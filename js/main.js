@@ -18,6 +18,8 @@ function getVerse(verse) {
         data: data,
         success: function(response) {
             $('#myModal h4.book').text($(".books option:selected").text() + ' ' + data.chapter);
+            $('#myModal p.lang-2').text("");
+            $('#myModal p.lang-1').text("");
             if (data.lang_1 != '') {
                 $('#myModal p.lang-1').text(data.verse + ' ' + getVerseLang(data.lang_1, response));
             }

@@ -27,8 +27,24 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Panel Heading</h2>
+    <div class="container mt-5">
+    <div class="row">
+    <div class="col col-lg-4"></div>
+    <div class="col col-lg-4">
+        <h2>Clive Bible Logo</h2>
+        <label class="switch">
+            <input type="checkbox" id="togBtn">
+                <div class="slider round">
+                    <span class="on">Lyrics</span>
+                    <span class="off">Bible</span>
+                 </div>
+         </label>
+    </div>
+    <div class="col col-lg-4">
+    <img src="img/img_avatar.png" alt="Avatar" class="avatar">
+    <h4>UserName</h2>
+    </div>
+    </div>
         <div class="panel panel-default">
             <div class="panel-body p-4">
                 <div class="row">
@@ -63,7 +79,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-2 verse-btns">
                             <div class="col col-lg-6">
                                 <button type="button" class="btn btn-light" onclick="Previous()">Previous</button>
                             </div>
@@ -72,7 +88,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h4 class="text-center">Select Language</h4>
+                            <h4 class="text-center lang-heading">Languages</h4>
                             <div class="col col-lg-6 lang-1">
                             <select class="form-control">
                                     <option selected value="">Select Language</option>
@@ -98,6 +114,7 @@
                         </div>
                     </div>
                     <div class="col col-lg-6 backgrounds">
+                    <h4 class="text-center bg-heading">Backgrounds</h4>
                         <div class="row">
                             <div class="col col-lg-5 bg bg-img-1" onclick="selectBackground($(this))" style='background-image:url("img/bg-1.jpg")'>
                             </div>
