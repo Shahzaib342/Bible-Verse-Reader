@@ -9,3 +9,8 @@
     padding: 15px;
     border-radius: 15px;
 }
+
+.backgrounds div.bg {
+    cursor: pointer;
+    opacity: 0.5;
+}

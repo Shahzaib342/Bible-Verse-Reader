@@ -1,3 +1,5 @@
+var background = '';
+
 function getVerse(verse) {
 
     data = {
@@ -25,6 +27,7 @@ function getVerse(verse) {
             if (data.lang_1 == '' && data.lang_2 == '') {
                 $('#myModal p.lang-2').text(data.verse + ' ' + response.ENGLISH);
             }
+            $(".modal-body").css("background-image", background);
             $('#myModal').modal('show');
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -55,5 +58,31 @@ function getVerseLang(data) {
             break;
         default:
             return data.ENGLISH;
+    }
+}
+
+function selectBackground(div) {
+    console.log(div);
+    $(div).css('opacity', '1');
+    background = $(div).css('background-image');
+}
+
+function Next() {
+    var selected_index = $(".verse select option:selected").index();
+    if ($(".verse select").val((selected_index + 1)).length == 1) {
+        var val = $(".verse select option").eq((selected_index + 1)).val();
+        $(".verse select").val(val).trigger("change");
+    } else {
+        alert("End of the list");
+    }
+}
+
+function Previous() {
+    var selected_index = $(".verse select option:selected").index();
+    if ($(".verse select").val((selected_index - 1)).length == 1) {
+        var val = $(".verse select option").eq((selected_index - 1)).val();
+        $(".verse select").val(val).trigger("change");
+    } else {
+        alert("End of the list");
     }
 }

@@ -65,10 +65,10 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col col-lg-6">
-                                <button type="button" class="btn btn-light">Previous</button>
+                                <button type="button" class="btn btn-light" onclick="Previous()">Previous</button>
                             </div>
                             <div class="col col-lg-6">
-                            <button type="button" class="btn btn-light">Next</button>
+                            <button type="button" class="btn btn-light" onclick="Next()">Next</button>
                             </div>
                         </div>
                         <div class="row">
@@ -99,24 +99,24 @@
                     </div>
                     <div class="col col-lg-6 backgrounds">
                         <div class="row">
-                            <div class="col col-lg-5" style='background-image:url("img/bg-1.jpg")'>
+                            <div class="col col-lg-5 bg bg-img-1" onclick="selectBackground($(this))" style='background-image:url("img/bg-1.jpg")'>
                             </div>
                             <div class="col col-lg-1"></div>
-                            <div class="col col-lg-5" style='background-image:url("img/bg-2.jpg")'>
+                            <div class="col col-lg-5 bg bg-img-2" onclick="selectBackground($(this))" style='background-image:url("img/bg-2.jpg")'>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5" style='background-image:url("img/bg-3.jpg")'>
+                            <div class="col col-lg-5 bg bg-img-3" onclick="selectBackground($(this))" style='background-image:url("img/bg-3.jpg")'>
                             </div>
                             <div class="col col-lg-1"></div>
-                            <div class="col col-lg-5" style='background-image:url("img/bg-4.jpg")'>
+                            <div class="col col-lg-5 bg bg-img-4" onclick="selectBackground($(this))" style='background-image:url("img/bg-4.jpg")'>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5" style='background-image:url("img/bg-5.jpg")'>
+                            <div class="col col-lg-5 bg bg-img-5" onclick="selectBackground($(this))" style='background-image:url("img/bg-5.jpg")'>
                             </div>
                             <div class="col col-lg-1"></div>
-                            <div class="col col-lg-5" style='background-image:url("img/bg-6.jpeg")'>
+                            <div class="col col-lg-5 bg bg-img-6" onclick="selectBackground($(this))" style='background-image:url("img/bg-6.jpeg")'>
                             </div>
                         </div>
                     </div>
