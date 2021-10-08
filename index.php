@@ -35,7 +35,7 @@
                     <div class="col col-lg-6">
                         <label class="switch">
                             <input type="checkbox" id="togBtn">
-                            <div class="slider round">
+                            <div class="slider round" onclick="toggleTestament($(this))">
                                 <span class="on">New Testament</span>
                                 <span class="off">Old Testament</span>
                             </div>

@@ -1,4 +1,5 @@
 var background = '';
+var testament = 'old';
 
 function getVerse(verse) {
 
@@ -31,6 +32,7 @@ function getVerse(verse) {
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
+            alert("There are no verse exist against this combination in our database");
         }
     });
 }
@@ -83,5 +85,43 @@ function Previous() {
         $(".verse select").val(val).trigger("change");
     } else {
         alert("End of the list");
+    }
+}
+
+function toggleTestament(div) {
+    if (testament == 'old') {
+        testament = 'new';
+        $.ajax({
+            url: "all.php?action=getTestament",
+            type: "post",
+            dataType: "json",
+            data: { 'testament': testament },
+            success: function(response) {
+                $(".books").empty().append(response.books);
+                $(".chapter select").empty().append(response.chapter);
+                $(".verse select").empty().append(response.verse);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
+
+            }
+        });
+    } else {
+        testament = 'old';
+        $.ajax({
+            url: "all.php?action=getTestament",
+            type: "post",
+            dataType: "json",
+            data: { 'testament': testament },
+            success: function(response) {
+                $(".books").empty().append(response.books);
+                $(".chapter select").empty().append(response.chapter);
+                $(".verse select").empty().append(response.verse);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
+
+            }
+        });
     }
 }
