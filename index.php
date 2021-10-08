@@ -56,7 +56,7 @@
                                 </select>
                             </div>
                             <div class="col col-lg-3 verse">
-                                <select class="form-control">
+                                <select class="form-control" onchange="getVerse($(this).val())">
                                 <?php foreach($verse as $verse) { ?>
                                     <option value="<?php echo $verse["verse"]; ?>"><?php echo $verse["verse"]; ?></option>
                                     <?php  } ?>
@@ -73,9 +73,9 @@
                         </div>
                         <div class="row">
                             <h4 class="text-center">Select Language</h4>
-                            <div class="col col-lg-6">
+                            <div class="col col-lg-6 lang-1">
                             <select class="form-control">
-                                    <option selected>Select Language</option>
+                                    <option selected value="">Select Language</option>
                                     <option value="English">English</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Kannada">Kannada</option>
@@ -84,9 +84,9 @@
                                     <option value="Telugu">Telugu</option>
                                 </select>
                             </div>
-                            <div class="col col-lg-6">
+                            <div class="col col-lg-6 lang-2">
                             <select class="form-control">
-                            <option selected>Select Language</option>
+                            <option selected value="">Select Language</option>
                                     <option value="English">English</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Kannada">Kannada</option>
@@ -125,6 +125,22 @@
             </div>
         </div>
     </div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body" style="background-image:url('img/bg-1.jpg')">
+       <h4 class="book"></h4>
+       <p class="lang-1"></p>
+       <p class="lang-2"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>
