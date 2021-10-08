@@ -17,12 +17,11 @@ function getVerse(verse) {
         data: data,
         success: function(response) {
             $('#myModal h4.book').text($(".books option:selected").text() + ' ' + data.chapter);
-            getVerseLang(response);
             if (data.lang_1 != '') {
-                $('#myModal p.lang-1').text(data.verse + ' ' + getVerseLang(response));
+                $('#myModal p.lang-1').text(data.verse + ' ' + getVerseLang(data.lang_1, response));
             }
             if (data.lang_2 != '') {
-                $('#myModal p.lang-2').text(data.verse + ' ' + getVerseLang(response));
+                $('#myModal p.lang-2').text(data.verse + ' ' + getVerseLang(data.lang_2, response));
             }
             if (data.lang_1 == '' && data.lang_2 == '') {
                 $('#myModal p.lang-2').text(data.verse + ' ' + response.ENGLISH);
@@ -36,28 +35,28 @@ function getVerse(verse) {
     });
 }
 
-function getVerseLang(data) {
-    switch (data.lang_1) {
+function getVerseLang(lang, response) {
+    switch (lang.toUpperCase()) {
         case 'ENGLISH':
-            return data.ENGLISH;
+            return response.ENGLISH;
             break;
         case 'HINDI':
-            return data.HINDI;
+            return response.HINDI;
             break;
         case 'KANNADA':
-            return data.KANNADA;
+            return response.KANNADA;
             break;
         case 'MALAYALAM':
-            return data.MALAYALAM;
+            return response.MALAYALAM;
             break;
         case 'TAMIL':
-            return data.TAMIL;
+            return response.TAMIL;
             break;
         case 'TELUGU':
-            return data.TELUGU;
+            return response.TELUGU;
             break;
         default:
-            return data.ENGLISH;
+            return response.ENGLISH;
     }
 }
 

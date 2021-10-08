@@ -130,7 +130,9 @@
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
-
+    <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
       <!-- Modal body -->
       <div class="modal-body" style="background-image:url('img/bg-1.jpg')">
        <h4 class="book"></h4>
