@@ -113,3 +113,11 @@
     width: 100%;
     margin-top: 50px;
 }
+
+.google-auth-btn a {
+    all: unset;
+}
+
+.logout {
+    font-size: 12px;
+}

@@ -1,4 +1,10 @@
-<?php include 'all.php'; ?>
+<?php
+session_start();
+if(!isset($_SESSION['access_token'])){
+    header('location:auth.php');
+}
+include 'all.php';
+?>
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -41,8 +47,8 @@
          </label>
     </div>
     <div class="col col-lg-4">
-    <img src="img/img_avatar.png" alt="Avatar" class="avatar">
-    <h4>UserName</h2>
+    <img src="<?php echo $_SESSION['user_image']; ?> " alt="Avatar" class="avatar">
+    <h4><?php echo $_SESSION['user_first_name'] . ' ' .  $_SESSION['user_last_name']; ?> <a href="logout.php" class="logout">Logout</a></h2>
     </div>
     </div>
         <div class="panel panel-default">
