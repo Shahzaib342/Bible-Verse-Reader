@@ -1,13 +1,13 @@
 <?php
 include 'config/config.php';
 
-$query = $conn->query('SELECT ID, BOOK FROM books where ID <= 39');
+$query = $conn->query('SELECT ID, BOOK FROM books where ID < 39');
 $books = $row = $query->fetchAll();
 
-$query = $conn->query('SELECT DISTINCT(CHAPTER) as chapter FROM contexts where ID >= 0 and ID <= 39');
+$query = $conn->query('SELECT DISTINCT(CHAPTER) as chapter FROM contexts where ID >= 0 and ID < 39');
 $chapters = $row = $query->fetchAll();
 
-$query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID >= 0 and ID <= 39');
+$query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID >= 0 and ID < 39');
 $verse = $row = $query->fetchAll();
 
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
@@ -47,24 +47,24 @@ function getTestament() {
     $verseHtml = '';
 
     if($testament == 'old') {
-        $query = $conn->query('SELECT ID, BOOK FROM books where ID <= 39');
+        $query = $conn->query('SELECT ID, BOOK FROM books where ID < 39');
         $books = $row = $query->fetchAll();
         
-        $query = $conn->query('SELECT DISTINCT(CHAPTER) as chapter FROM contexts where ID >= 0 and ID <= 39');
+        $query = $conn->query('SELECT DISTINCT(CHAPTER) as chapter FROM contexts where ID >= 0 and ID < 39');
         $chapters = $row = $query->fetchAll();
         
-        $query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID >= 0 and ID <= 39');
+        $query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID >= 0 and ID < 39');
         $verse = $row = $query->fetchAll();
         
     }
     else {
-        $query = $conn->query('SELECT ID, BOOK FROM books where ID > 39');
+        $query = $conn->query('SELECT ID, BOOK FROM books where ID >= 39');
         $books = $row = $query->fetchAll();
         
-        $query = $conn->query('SELECT DISTINCT(CHAPTER) as chapter FROM contexts where ID > 39');
+        $query = $conn->query('SELECT DISTINCT(CHAPTER) as chapter FROM contexts where ID >= 39');
         $chapters = $row = $query->fetchAll();
         
-        $query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID > 39');
+        $query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID >= 39');
         $verse = $row = $query->fetchAll();
     }
 

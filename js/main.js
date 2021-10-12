@@ -1,6 +1,15 @@
 var background = '';
 var testament = 'old';
 
+$(document).ready(function() {
+    $(document).keypress(function(e) {
+        console.log(e.keyCode);
+        if (e.keyCode === 27) {
+            $("#myModal").modal('hide');
+        }
+    });
+});
+
 function getVerse(verse) {
 
     data = {
@@ -17,17 +26,21 @@ function getVerse(verse) {
         dataType: "json",
         data: data,
         success: function(response) {
-            $('#myModal h4.book').text($(".books option:selected").text() + ' ' + data.chapter);
             $('#myModal p.lang-2').text("");
             $('#myModal p.lang-1').text("");
+            $('#myModal h4.book-1').text("");
+            $('#myModal h4.book-2').text("");
             if (data.lang_1 != '') {
                 $('#myModal p.lang-1').text(data.verse + ' ' + getVerseLang(data.lang_1, response));
+                $('#myModal h4.book-1').text($(".books option:selected").text() + ' ' + data.chapter + ':' + data.verse);
             }
             if (data.lang_2 != '') {
                 $('#myModal p.lang-2').text(data.verse + ' ' + getVerseLang(data.lang_2, response));
+                $('#myModal h4.book-2').text($(".books option:selected").text() + ' ' + data.chapter + ':' + data.verse);
             }
             if (data.lang_1 == '' && data.lang_2 == '') {
                 $('#myModal p.lang-2').text(data.verse + ' ' + response.ENGLISH);
+                $('#myModal h4.book-1').text($(".books option:selected").text() + ' ' + data.chapter + ':' + data.verse);
             }
             $(".modal-body").css("background-image", background);
             $('#myModal').modal('show');
