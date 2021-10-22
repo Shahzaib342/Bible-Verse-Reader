@@ -41,10 +41,7 @@ function getVerse()
 function getTestament() {
     $testament = $_POST["testament"];
     global $conn;
-
-    $booksHtml = '';
-    $chapterHtml = '';
-    $verseHtml = '';
+    $html = '';
 
     if($testament == 'old') {
         $query = $conn->query('SELECT ID, BOOK FROM books where ID < 39');
@@ -67,21 +64,26 @@ function getTestament() {
         $query = $conn->query('SELECT DISTINCT(VERSE) as verse FROM contexts where ID >= 39');
         $verse = $row = $query->fetchAll();
     }
-
-    foreach($books as $book) {
-        $booksHtml .=  "<option value=" . $book['ID'] ."> " . $book["BOOK"] . "</option>";
-     }
-     foreach($chapters as $chapter) {
-        $chapterHtml .=  "<option value=" . $chapter['chapter'] ."> " . $chapter["chapter"] . "</option>";
-     }
-     foreach($verse as $ver) {
-        $verseHtml .=  "<option value=" . $ver['verse'] ."> " . $ver["verse"] . "</option>";
-     }
-
+    
+     foreach($books as $book) {
+     $html .= "<div class='col col-lg-2 books-buttons'>";    
+     $html .= "<div id='" .  $book['ID'] . "' class='book-name'>";
+     $html .= "<span>" .$book['BOOK']. "</span>";
+     $html .= "<div class='row chapter-and-verse'>";
+     $html .= "<div class='chapter-and-verse-row'>";
+     $html .= "<div class='col col-lg-5 chapter'><select>";
+       foreach ($chapters as $chapter) { 
+        $html .= "<option value='" . $chapter['chapter']. "'> " . $chapter['chapter'] . "</option>";
+       }
+       $html .= "</select></div><div class='col col-lg-5 verse'><select onchange='getVerse($(this))'>";
+        foreach ($verse as $v) { 
+            $html .= "<option value='" . $v['verse']."'> " . $v['verse'] . "</option>"; 
+        }
+        $html .= "</select></div></div></div> </div></div>";
+                
+    }
      $response = array(
-         "books" => $booksHtml,
-         "chapter" => $chapterHtml,
-         "verse" => $verseHtml
+         "html" => $html
      );
 
      echo json_encode($response);

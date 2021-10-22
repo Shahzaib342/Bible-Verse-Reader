@@ -13,12 +13,14 @@ $(document).ready(function() {
 function getVerse(verse) {
 
     data = {
-        verse: verse,
-        chapter: $(".chapter select").val(),
-        book: $(".books").val(),
+        verse: verse.val(),
+        chapter: verse.parent().parent().find(".chapter select").val(),
+        book: verse.parent().parent().parent().parent().attr("id"),
         lang_1: $(".lang-1 select").val(),
         lang_2: $(".lang-2 select").val()
     }
+
+    var bok_name = verse.parent().parent().parent().parent().find("span").text();
 
     $.ajax({
         url: "all.php?action=getVerse",
@@ -32,15 +34,15 @@ function getVerse(verse) {
             $('#myModal h4.book-2').text("");
             if (data.lang_1 != '') {
                 $('#myModal p.lang-1').text(data.verse + ' ' + getVerseLang(data.lang_1, response));
-                $('#myModal h4.book-1').text($(".books option:selected").text() + ' ' + data.chapter + ':' + data.verse);
+                $('#myModal h4.book-1').text(bok_name + ' ' + data.chapter + ':' + data.verse);
             }
             if (data.lang_2 != '') {
                 $('#myModal p.lang-2').text(data.verse + ' ' + getVerseLang(data.lang_2, response));
-                $('#myModal h4.book-2').text($(".books option:selected").text() + ' ' + data.chapter + ':' + data.verse);
+                $('#myModal h4.book-2').text(bok_name + ' ' + data.chapter + ':' + data.verse);
             }
             if (data.lang_1 == '' && data.lang_2 == '') {
                 $('#myModal p.lang-2').text(data.verse + ' ' + response.ENGLISH);
-                $('#myModal h4.book-1').text($(".books option:selected").text() + ' ' + data.chapter + ':' + data.verse);
+                $('#myModal h4.book-1').text(bok_name + ' ' + data.chapter + ':' + data.verse);
             }
             $(".modal-body").css("background-image", background);
             $('#myModal').modal('show');
@@ -78,29 +80,38 @@ function getVerseLang(lang, response) {
 }
 
 function selectBackground(div) {
-    console.log(div);
     $(div).css('opacity', '1');
     background = $(div).css('background-image');
 }
 
 function Next() {
-    var selected_index = $(".verse select option:selected").index();
-    if ($(".verse select").val((selected_index + 1)).length == 1) {
-        var val = $(".verse select option").eq((selected_index + 1)).val();
-        $(".verse select").val(val).trigger("change");
-    } else {
-        alert("End of the list");
-    }
+    $(".verse").each(function(index) {
+        console.log(index + ": " + $(this).text());
+        var selected_index = $(this).find("select option:selected").index();
+        var len = $(this).find("select option").length;
+        console.log(len);
+        if ($(this).find("select").val((selected_index + 1)).length == 1 && (selected_index + 1) < len) {
+            var val = $(this).find("select option").eq((selected_index + 1)).val();
+            $(this).find("select").val(val).trigger("change");
+            return false;
+        } else {
+            return true;
+        }
+    });
 }
 
 function Previous() {
-    var selected_index = $(".verse select option:selected").index();
-    if ($(".verse select").val((selected_index - 1)).length == 1) {
-        var val = $(".verse select option").eq((selected_index - 1)).val();
-        $(".verse select").val(val).trigger("change");
-    } else {
-        alert("End of the list");
-    }
+    $(".verse").each(function(index) {
+        var selected_index = $(this).find("select option:selected").index();
+        var len = $(this).find("select option").length;
+        if ($(this).find("select").val((selected_index - 1)).length == 1 && (selected_index - 1) >= 0) {
+            var val = $(this).find("select option").eq((selected_index - 1)).val();
+            $(this).find("select").val(val).trigger("change");
+            return false;
+        } else {
+            return true;
+        }
+    });
 }
 
 function toggleTestament(div) {
@@ -112,13 +123,10 @@ function toggleTestament(div) {
             dataType: "json",
             data: { 'testament': testament },
             success: function(response) {
-                $(".books").empty().append(response.books);
-                $(".chapter select").empty().append(response.chapter);
-                $(".verse select").empty().append(response.verse);
+                $(".all-books-list").empty().append(response.html);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR, textStatus, errorThrown);
-
             }
         });
     } else {
@@ -129,9 +137,7 @@ function toggleTestament(div) {
             dataType: "json",
             data: { 'testament': testament },
             success: function(response) {
-                $(".books").empty().append(response.books);
-                $(".chapter select").empty().append(response.chapter);
-                $(".verse select").empty().append(response.verse);
+                $(".all-books-list").empty().append(response.html);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR, textStatus, errorThrown);

@@ -1,10 +1,11 @@
 <?php
 session_start();
-if(!isset($_SESSION['access_token'])){
+if (!isset($_SESSION['access_token'])) {
     header('location:auth.php');
 }
 include 'all.php';
 ?>
+
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -34,137 +35,147 @@ include 'all.php';
 
 <body>
     <div class="container mt-5">
-    <div class="row">
-    <div class="col col-lg-4"></div>
-    <div class="col col-lg-4">
-        <h2>Clive Bible Logo</h2>
-        <label class="switch">
-            <input type="checkbox" id="togBtn">
-                <div class="slider round">
-                    <span class="on">Lyrics</span>
-                    <span class="off">Bible</span>
-                 </div>
-         </label>
-    </div>
-    <div class="col col-lg-4">
-    <img src="<?php echo $_SESSION['user_image']; ?> " alt="Avatar" class="avatar">
-    <h4><?php echo $_SESSION['user_first_name'] . ' ' .  $_SESSION['user_last_name']; ?> <a href="logout.php" class="logout">Logout</a></h2>
-    </div>
-    </div>
+        <div class="row">
+            <div class="col col-lg-4"></div>
+            <div class="col col-lg-4">
+                <h2>Clive Bible Logo</h2>
+                <label class="switch">
+                    <input type="checkbox" id="togBtn">
+                    <div class="slider round">
+                        <span class="on">Lyrics</span>
+                        <span class="off">Bible</span>
+                    </div>
+                </label>
+            </div>
+            <div class="col col-lg-4">
+                <img src="<?php echo $_SESSION['user_image']; ?> " alt="Avatar" class="avatar">
+                <h4><?php echo $_SESSION['user_first_name'] . ' ' .  $_SESSION['user_last_name']; ?> <a href="logout.php" class="logout">Logout</a></h2>
+                    <p>Days left - 19</p>
+            </div>
+        </div>
         <div class="panel panel-default">
             <div class="panel-body p-4">
                 <div class="row">
-                    <div class="col col-lg-6">
-                        <label class="switch">
-                            <input type="checkbox" id="togBtn">
-                            <div class="slider round" onclick="toggleTestament($(this))">
-                                <span class="on">New Testament</span>
-                                <span class="off">Old Testament</span>
-                            </div>
-                        </label>
+                    <div class="col col-lg-12 backgrounds">
+                        <h4 class="text-center bg-heading">Backgrounds</h4>
                         <div class="row">
-                            <div class="col col-lg-6">
-                                <select class="form-control books">
-                                    <?php foreach($books as $book) { ?>
-                                    <option value="<?php echo $book["ID"]; ?>"><?php echo $book["BOOK"]; ?></option>
-                                    <?php  } ?>
-                                </select>
+                            <div class="col col-lg-2 bg bg-img-1" onclick="selectBackground($(this))" style='background-image:url("img/bg-1.jpg")'>
                             </div>
-                            <div class="col col-lg-3 chapter">
-                                <select class="form-control">
-                                <?php foreach($chapters as $chapter) { ?>
-                                    <option value="<?php echo $chapter["chapter"]; ?>"><?php echo $chapter["chapter"]; ?></option>
-                                    <?php  } ?>
-                                </select>
+                            <div class="col col-lg-2 bg bg-img-2" onclick="selectBackground($(this))" style='background-image:url("img/bg-2.jpg")'>
                             </div>
-                            <div class="col col-lg-3 verse">
-                                <select class="form-control" onchange="getVerse($(this).val())">
-                                <?php foreach($verse as $verse) { ?>
-                                    <option value="<?php echo $verse["verse"]; ?>"><?php echo $verse["verse"]; ?></option>
-                                    <?php  } ?>
-                                </select>
+                            <div class="col col-lg-2 bg bg-img-3" onclick="selectBackground($(this))" style='background-image:url("img/bg-3.jpg")'>
                             </div>
-                        </div>
-                        <div class="row mt-2 verse-btns">
-                            <div class="col col-lg-6">
-                                <button type="button" class="btn btn-light" onclick="Previous()">Previous</button>
+                            <div class="col col-lg-2 bg bg-img-4" onclick="selectBackground($(this))" style='background-image:url("img/bg-4.jpg")'>
                             </div>
-                            <div class="col col-lg-6">
-                            <button type="button" class="btn btn-light" onclick="Next()">Next</button>
+                            <div class="col col-lg-2 bg bg-img-5" onclick="selectBackground($(this))" style='background-image:url("img/bg-5.jpg")'>
                             </div>
-                        </div>
-                        <div class="row">
-                            <h4 class="text-center lang-heading">Languages</h4>
-                            <div class="col col-lg-6 lang-1">
-                            <select class="form-control">
-                                    <option selected value="">Select Language</option>
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi</option>
-                                    <option value="Kannada">Kannada</option>
-                                    <option value="Malayalam">Malayalam</option>
-                                    <option value="Tamil">Tamil</option>
-                                    <option value="Telugu">Telugu</option>
-                                </select>
-                            </div>
-                            <div class="col col-lg-6 lang-2">
-                            <select class="form-control">
-                            <option selected value="">Select Language</option>
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi</option>
-                                    <option value="Kannada">Kannada</option>
-                                    <option value="Malayalam">Malayalam</option>
-                                    <option value="Tamil">Tamil</option>
-                                    <option value="Telugu">Telugu</option>
-                                </select>
+                            <div class="col col-lg-2 bg bg-img-6" onclick="selectBackground($(this))" style='background-image:url("img/bg-6.jpeg")'>
                             </div>
                         </div>
                     </div>
-                    <div class="col col-lg-6 backgrounds">
-                    <h4 class="text-center bg-heading">Backgrounds</h4>
+                    <div class="col col-lg-12 row-with-languages">
                         <div class="row">
-                            <div class="col col-lg-5 bg bg-img-1" onclick="selectBackground($(this))" style='background-image:url("img/bg-1.jpg")'>
+                            <div class="col col-lg-5">
+                                <h4 class="text-center lang-heading">Languages</h4>
+                                <div class="row">
+                                    <div class="col col-lg-6 lang-1">
+                                        <select class="form-control">
+                                            <option selected value="">Select Language</option>
+                                            <option value="English">English</option>
+                                            <option value="Hindi">Hindi</option>
+                                            <option value="Kannada">Kannada</option>
+                                            <option value="Malayalam">Malayalam</option>
+                                            <option value="Tamil">Tamil</option>
+                                            <option value="Telugu">Telugu</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-lg-6 lang-2">
+                                        <select class="form-control">
+                                            <option selected value="">Select Language</option>
+                                            <option value="English">English</option>
+                                            <option value="Hindi">Hindi</option>
+                                            <option value="Kannada">Kannada</option>
+                                            <option value="Malayalam">Malayalam</option>
+                                            <option value="Tamil">Tamil</option>
+                                            <option value="Telugu">Telugu</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col col-lg-1"></div>
-                            <div class="col col-lg-5 bg bg-img-2" onclick="selectBackground($(this))" style='background-image:url("img/bg-2.jpg")'>
+                            <div class="col col-lg-3 text-center">
+                                <h4 class="text-center lang-heading visibility-none">Languages</h4>
+                                <label class="switch">
+                                    <input type="checkbox" id="togBtn">
+                                    <div class="slider round" onclick="toggleTestament($(this))">
+                                        <span class="on">New Testament</span>
+                                        <span class="off">Old Testament</span>
+                                    </div>
+                                </label>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-lg-5 bg bg-img-3" onclick="selectBackground($(this))" style='background-image:url("img/bg-3.jpg")'>
-                            </div>
-                            <div class="col col-lg-1"></div>
-                            <div class="col col-lg-5 bg bg-img-4" onclick="selectBackground($(this))" style='background-image:url("img/bg-4.jpg")'>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-lg-5 bg bg-img-5" onclick="selectBackground($(this))" style='background-image:url("img/bg-5.jpg")'>
-                            </div>
-                            <div class="col col-lg-1"></div>
-                            <div class="col col-lg-5 bg bg-img-6" onclick="selectBackground($(this))" style='background-image:url("img/bg-6.jpeg")'>
+                            <div class="col col-lg-4">
+                                <h4 class="text-center lang-heading visibility-none">Languages</h4>
+                                <div class="row mt-2 verse-btns">
+                                    <div class="col col-lg-6">
+                                        <button type="button" class="btn btn-light" onclick="Previous()">Previous</button>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                        <button type="button" class="btn btn-light" onclick="Next()">Next</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col col-lg-12 row-with-books-list">
+                        <div class="row all-books-list">
+                            <?php foreach ($books as $book) { ?>
+                                <div class="col col-lg-2 books-buttons">
+                                    <div id="<?php echo $book["ID"]; ?>" class="book-name">
+                                        <span><?php echo $book["BOOK"]; ?></span>
+                                        <div class="row chapter-and-verse">
+                                            <div class="chapter-and-verse-row">
+                                                <div class="col col-lg-5 chapter">
+                                                    <select>
+                                                        <?php foreach ($chapters as $chapter) { ?>
+                                                            <option value="<?php echo $chapter["chapter"]; ?>"><?php echo $chapter["chapter"]; ?></option>
+                                                        <?php  } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col col-lg-5 verse">
+                                                    <select onchange="getVerse($(this))">
+                                                        <?php foreach ($verse as $v) {   ?>
+                                                            <option value="<?php echo $v["verse"]; ?>"><?php echo $v["verse"]; ?></option>
+                                                        <?php  } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php  } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body" style="background-image:url('img/bg-1.jpg')">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="book book-1"></h4>
+                    <p class="lang-1"></p>
+                    <h4 class="book book-2"></h4>
+                    <p class="lang-2"></p>
                 </div>
 
             </div>
         </div>
     </div>
-
-<!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal body -->
-      <div class="modal-body" style="background-image:url('img/bg-1.jpg')">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-       <h4 class="book book-1"></h4>
-       <p class="lang-1"></p>
-       <h4 class="book book-2"></h4>
-       <p class="lang-2"></p>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>
