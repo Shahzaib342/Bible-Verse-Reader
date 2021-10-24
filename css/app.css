@@ -202,3 +202,13 @@
     height: 250px;
     overflow-y: scroll;
 }
+
+.display-current-verse {
+    font-size: 12px;
+    text-align: right;
+    display: block;
+    font-weight: bold;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -65,6 +65,7 @@ function getTestament() {
         $verse = $row = $query->fetchAll();
     }
     
+     $flag=0;
      foreach($books as $book) {
      $html .= "<div class='col col-lg-2 books-buttons'>";    
      $html .= "<div id='" .  $book['ID'] . "' class='book-name'>";
@@ -75,12 +76,12 @@ function getTestament() {
        foreach ($chapters as $chapter) { 
         $html .= "<option value='" . $chapter['chapter']. "'> " . $chapter['chapter'] . "</option>";
        }
-       $html .= "</select></div><div class='col col-lg-5 verse'><select onchange='getVerse($(this))'>";
+       $html .= "</select></div><div class='col col-lg-5 verse'><select onchange='getVerse($(this))' id = '$flag'>";
         foreach ($verse as $v) { 
             $html .= "<option value='" . $v['verse']."'> " . $v['verse'] . "</option>"; 
         }
         $html .= "</select></div></div></div> </div></div>";
-                
+        $flag++;
     }
      $response = array(
          "html" => $html

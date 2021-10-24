@@ -102,7 +102,7 @@ include 'all.php';
                                     </div>
                                 </div>
                             </div>
-                            <div class="col col-lg-3 text-center">
+                            <div class="col col-lg-2 text-center">
                                 <h4 class="text-center lang-heading visibility-none">Languages</h4>
                                 <label class="switch">
                                     <input type="checkbox" id="togBtn">
@@ -126,8 +126,9 @@ include 'all.php';
                         </div>
                     </div>
                     <div class="col col-lg-12 row-with-books-list">
+                    <a onclick="displayCurrentVerse()" class="display-current-verse">Display Verse</a>
                         <div class="row all-books-list">
-                            <?php foreach ($books as $book) { ?>
+                            <?php $flag = 0; foreach ($books as $book) { ?>
                                 <div class="col col-lg-2 books-buttons">
                                     <div id="<?php echo $book["ID"]; ?>" class="book-name">
                                         <span><?php echo $book["BOOK"]; ?></span>
@@ -141,7 +142,7 @@ include 'all.php';
                                                     </select>
                                                 </div>
                                                 <div class="col col-lg-5 verse">
-                                                    <select onchange="getVerse($(this))">
+                                                    <select onchange="getVerse($(this))" id="<?php echo $flag++ ?>">
                                                         <?php foreach ($verse as $v) {   ?>
                                                             <option value="<?php echo $v["verse"]; ?>"><?php echo $v["verse"]; ?></option>
                                                         <?php  } ?>
